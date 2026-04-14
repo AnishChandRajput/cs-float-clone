@@ -2,10 +2,22 @@ import { useState } from 'react';
 import { Marketplace } from './pages/Marketplace';
 import { Dashboard } from './pages/Dashboard';
 import { BottomNav } from './components/BottomNav';
+import { AuthPage } from './pages/AuthPage';
 import type { AppPage } from './types/navigation';
+import { getCurrentUser, logoutUser, type StoredUser } from './utils/auth';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<AppPage>('market');
+  const [currentUser, setCurrentUser] = useState<StoredUser | null>(() => getCurrentUser());
+
+  if (!currentUser) {
+    return <AuthPage onAuthSuccess={setCurrentUser} />;
+  }
+
+  const handleLogout = () => {
+    logoutUser();
+    setCurrentUser(null);
+  };
 
   const renderPage = () => {
     switch(currentPage) {
@@ -13,6 +25,20 @@ function App() {
         return <Marketplace onNavigate={setCurrentPage} />;
       case 'dashboard':
         return <Dashboard onNavigate={setCurrentPage} />;
+      case 'profile':
+        return (
+          <div className="min-h-screen bg-background text-on-background flex flex-col items-center justify-center p-8 text-center">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary font-label mb-3">Profile</p>
+            <h1 className="text-4xl font-headline font-black mb-2 uppercase tracking-tighter">{currentUser.username}</h1>
+            <p className="text-zinc-400 mb-8">{currentUser.email}</p>
+            <button
+              onClick={handleLogout}
+              className="bg-secondary text-on-secondary px-6 py-3 rounded-xl font-bold"
+            >
+              Log Out
+            </button>
+          </div>
+        );
       default:
         return (
           <div className="min-h-screen bg-background text-on-background flex flex-col items-center justify-center p-8 text-center">

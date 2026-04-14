@@ -1,5 +1,32 @@
 # React + TypeScript + Vite
 
+## MongoDB auth setup
+
+1. Create a `.env` file in the project root using `.env.example`.
+2. Set `MONGODB_URI` to your MongoDB connection string.
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+4. Start the API server (MongoDB auth backend):
+
+```bash
+npm run server
+```
+
+5. In another terminal, start the frontend:
+
+```bash
+npm run dev
+```
+
+The frontend auth page now calls:
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
