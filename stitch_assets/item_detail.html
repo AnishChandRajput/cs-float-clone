@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#ff7162",
+                        "surface-variant": "#22262b",
+                        "surface-tint": "#85adff",
+                        "primary-dim": "#0070eb",
+                        "error-container": "#9f0519",
+                        "secondary-fixed-dim": "#4af03b",
+                        "tertiary-container": "#f9362c",
+                        "on-background": "#f8f9fe",
+                        "background": "#0b0e11",
+                        "primary-fixed": "#6c9fff",
+                        "on-secondary-container": "#e7ffda",
+                        "primary-container": "#6c9fff",
+                        "surface-container-high": "#1c2024",
+                        "inverse-primary": "#005bc2",
+                        "on-secondary": "#005e00",
+                        "on-primary-container": "#00214f",
+                        "surface-container-low": "#101417",
+                        "on-error-container": "#ffa8a3",
+                        "outline-variant": "#45484c",
+                        "surface-bright": "#282d31",
+                        "tertiary-fixed": "#ff9385",
+                        "secondary": "#5bff49",
+                        "error-dim": "#d7383b",
+                        "tertiary-dim": "#e2241f",
+                        "on-tertiary": "#4a0001",
+                        "on-error": "#490006",
+                        "surface-container-highest": "#22262b",
+                        "on-secondary-fixed": "#004900",
+                        "on-tertiary-fixed": "#3a0001",
+                        "on-tertiary-container": "#000000",
+                        "error": "#ff716c",
+                        "on-primary": "#002c65",
+                        "outline": "#737679",
+                        "inverse-surface": "#f8f9fe",
+                        "surface-dim": "#0b0e11",
+                        "primary": "#85adff",
+                        "on-primary-fixed": "#000000",
+                        "tertiary-fixed-dim": "#ff7c6c",
+                        "on-surface-variant": "#a9abaf",
+                        "surface": "#0b0e11",
+                        "surface-container": "#161a1e",
+                        "inverse-on-surface": "#535559",
+                        "secondary-container": "#006e01",
+                        "on-surface": "#f8f9fe",
+                        "on-secondary-fixed-variant": "#006901",
+                        "primary-fixed-dim": "#5191ff",
+                        "on-primary-fixed-variant": "#002a61",
+                        "secondary-fixed": "#5bff49",
+                        "secondary-dim": "#4af03b",
+                        "on-tertiary-fixed-variant": "#7a0004",
+                        "surface-container-lowest": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0b0e11;
+            color: #f8f9fe;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl dark:bg-zinc-950/80 shadow-[0_8px_32px_rgba(133,173,255,0.06)]">
+<div class="flex items-center justify-between px-6 py-3 w-full max-w-[1920px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black italic tracking-tighter text-blue-400 dark:text-blue-400">Midnight Exchange</span>
+<div class="hidden md:flex items-center gap-6 font-manrope text-sm font-medium tracking-tight">
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1" href="#">Market</a>
+<a class="text-zinc-400 hover:text-zinc-100 transition-colors" href="#">Trade</a>
+<a class="text-zinc-400 hover:text-zinc-100 transition-colors" href="#">History</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex flex-col items-end mr-4">
+<span class="text-xs text-zinc-500 uppercase tracking-widest">Balance</span>
+<span class="font-bold text-secondary">$1,240.50</span>
+</div>
+<button class="bg-primary text-on-primary px-5 py-2 rounded-xl font-manrope font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
+                    Add Funds
+                </button>
+<div class="flex items-center gap-2 ml-2">
+<span class="material-symbols-outlined text-zinc-400 hover:text-white cursor-pointer transition-colors p-2 rounded-full hover:bg-white/5">notifications</span>
+<span class="material-symbols-outlined text-zinc-400 hover:text-white cursor-pointer transition-colors p-2 rounded-full hover:bg-white/5">shopping_cart</span>
+<div class="w-8 h-8 rounded-full overflow-hidden ml-2 ring-2 ring-primary/20">
+<img alt="User profile avatar" data-alt="Stylized 3D avatar of a digital collector with glowing neon highlights and futuristic glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDw-Ih03qhdPHYyD9xa7u3Zu831Ett_QF7V0YHWiYxkZG4myrc2ku7NYL6_hdm2-qfyN-gfTUNvPDW0IFXsrlTYWR_Jw-CKDd7gG27X5hovA-_VcstEGMzocY8iIPosqPCJDQu44-qd_5y9KuYAlNRf29hv4VE-p472cPEquqNATHnhyOOCBJlp1_s6FCZ8zwazAIjPMSkPi3iQ8RDbE6asdm6MVbvZh2o0YxspeA19ogIDBDnoQuf0CZr3IlLB5UJWUjr80yVkzI"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content: Item Detail -->
+<main class="pt-24 pb-12 px-6 max-w-[1400px] mx-auto">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 mb-8 text-xs font-medium text-zinc-500 uppercase tracking-widest">
+<span class="hover:text-primary transition-colors cursor-pointer">Market</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Knives</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-zinc-100">Obsidian Karambit</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Artifact Display -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Large Image Stage -->
+<div class="relative group bg-surface-container-low rounded-[2rem] overflow-hidden aspect-[4/3] flex items-center justify-center p-12">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
+<img alt="Obsidian Karambit Artifact" class="relative z-10 w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(133,173,255,0.3)] group-hover:scale-105 transition-transform duration-700" data-alt="A cinematic, high-end close-up of a sleek black obsidian karambit knife floating in a dark studio setting with electric blue neon rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrJLt0E2RqLkzMRlgb1xkGfrhlE3oPec_HNXyHtuFAtGmJ6Y6lN5WWM4IWFhIZ5BeYGYPmUUb4i2FcNAROnK6lwmIW6LSWiC-3kcHyymVPXXnR-rvLmyNn30IaR47XPTMCGTQ0lbH47gGSCHCIwIYuALJLKaaIfNEoi0ZMSSqsn5a7Ic6Bk8p-BC_D5yEBwUUcOqpTqJFTycBdKm9t8OmNtXZ19bsScEGsLeYEmAn9CiVmqWvsdN6WA6YC1NanNh8Dpm7CcMyI7Do"/>
+<!-- Floating Badge -->
+<div class="absolute top-8 left-8 glass-panel bg-tertiary-container/20 border border-tertiary-container/30 px-4 py-1.5 rounded-full">
+<span class="text-tertiary text-xs font-bold tracking-widest flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+                            ONLY 2 LEFT
+                        </span>
+</div>
+<!-- Interaction Overlay -->
+<div class="absolute bottom-8 right-8 flex gap-3">
+<button class="w-12 h-12 rounded-full glass-panel bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="w-12 h-12 rounded-full glass-panel bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+</div>
+<!-- Price History Chart Placeholder -->
+<div class="bg-surface-container rounded-3xl p-8 border border-outline-variant/10">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="font-headline font-bold text-lg">Market Performance</h3>
+<p class="text-sm text-zinc-500">30-day price volatility and volume</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded-lg text-xs bg-primary/20 text-primary font-bold">1M</button>
+<button class="px-3 py-1 rounded-lg text-xs hover:bg-white/5 text-zinc-500 font-bold transition-colors">3M</button>
+<button class="px-3 py-1 rounded-lg text-xs hover:bg-white/5 text-zinc-500 font-bold transition-colors">ALL</button>
+</div>
+</div>
+<!-- Chart Graphic (SVG Placeholder) -->
+<div class="w-full h-48 relative">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 800 200">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#5bff49" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#5bff49" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,150 Q100,160 200,120 T400,80 T600,100 T800,40" fill="none" stroke="#5bff49" stroke-width="3"></path>
+<path d="M0,150 Q100,160 200,120 T400,80 T600,100 T800,40 L800,200 L0,200 Z" fill="url(#chartGradient)"></path>
+<circle cx="800" cy="40" fill="#5bff49" r="4"></circle>
+</svg>
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-10">
+<div class="border-t border-white w-full"></div>
+<div class="border-t border-white w-full"></div>
+<div class="border-t border-white w-full"></div>
+<div class="border-t border-white w-full"></div>
+</div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-zinc-600 font-bold uppercase tracking-tighter">
+<span>OCT 01</span>
+<span>OCT 10</span>
+<span>OCT 20</span>
+<span>TODAY</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Details & Actions -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Main Specs -->
+<div class="bg-surface-container-highest rounded-3xl p-8 border border-outline-variant/15">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h1 class="font-headline text-4xl font-extrabold tracking-tight mb-2">Obsidian Karambit</h1>
+<div class="flex items-center gap-3">
+<span class="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded border border-primary/20 font-bold uppercase tracking-widest">Ancient Grade</span>
+<span class="text-zinc-500 text-xs">•</span>
+<span class="text-zinc-400 text-xs font-medium">Serial #0042-X</span>
+</div>
+</div>
+<div class="text-right">
+<div class="text-secondary font-headline text-3xl font-bold">$12,450.00</div>
+<div class="text-secondary/60 text-xs font-medium">+14.2% This week</div>
+</div>
+</div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-8">
+                        Forged from the volcanic core of the Midnight Wastes, this curved blade features a mirror-finish obsidian edge. Its ergonomic handle is wrapped in rare nanoweave silk, ensuring a grip that never fails even in the highest tension digital conflicts.
+                    </p>
+<!-- Stats Bento -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="bg-surface/40 p-4 rounded-2xl border border-white/5">
+<span class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest block mb-1">Float Value</span>
+<span class="font-headline font-bold text-on-surface">0.0041283</span>
+</div>
+<div class="bg-surface/40 p-4 rounded-2xl border border-white/5">
+<span class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest block mb-1">Pattern Index</span>
+<span class="font-headline font-bold text-on-surface">Fade #821</span>
+</div>
+<div class="bg-surface/40 p-4 rounded-2xl border border-white/5">
+<span class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest block mb-1">Kill Count</span>
+<span class="font-headline font-bold text-primary">1,402</span>
+</div>
+<div class="bg-surface/40 p-4 rounded-2xl border border-white/5">
+<span class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest block mb-1">Origin</span>
+<span class="font-headline font-bold text-on-surface">The Void Crypt</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-4">
+<button class="flex-1 bg-primary text-on-primary font-headline font-bold py-4 rounded-2xl shadow-[0_0_20px_rgba(133,173,255,0.3)] hover:brightness-110 active:scale-[0.98] transition-all">
+                            Instant Buy
+                        </button>
+<button class="flex-1 bg-transparent border border-outline-variant/30 text-white font-headline font-bold py-4 rounded-2xl hover:bg-white/5 active:scale-[0.98] transition-all">
+                            Sell / List
+                        </button>
+</div>
+</div>
+<!-- Recent Sales List -->
+<div class="bg-surface-container rounded-3xl p-8 border border-outline-variant/10">
+<h3 class="font-headline font-bold text-lg mb-6">Recent Transactions</h3>
+<div class="space-y-4">
+<!-- Transaction Item -->
+<div class="flex items-center justify-between py-3 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-sm">shopping_bag</span>
+</div>
+<div>
+<div class="text-sm font-bold text-zinc-100">Collector_99</div>
+<div class="text-[10px] text-zinc-500 font-medium">2 hours ago</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-sm font-bold text-white">$12,100.00</div>
+<div class="text-[10px] text-zinc-500 uppercase tracking-widest">Confirmed</div>
+</div>
+</div>
+<div class="flex items-center justify-between py-3 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-sm">shopping_bag</span>
+</div>
+<div>
+<div class="text-sm font-bold text-zinc-100">NeonGhost</div>
+<div class="text-[10px] text-zinc-500 font-medium">1 day ago</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-sm font-bold text-white">$11,850.00</div>
+<div class="text-[10px] text-zinc-500 uppercase tracking-widest">Confirmed</div>
+</div>
+</div>
+<div class="flex items-center justify-between py-3 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-sm">shopping_bag</span>
+</div>
+<div>
+<div class="text-sm font-bold text-zinc-100">VoidRunner_4</div>
+<div class="text-[10px] text-zinc-500 font-medium">3 days ago</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-sm font-bold text-white">$12,400.00</div>
+<div class="text-[10px] text-zinc-500 uppercase tracking-widest">Confirmed</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 rounded-xl text-xs font-bold text-primary hover:bg-primary/10 transition-all uppercase tracking-widest">
+                        View Full History
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto bg-surface-container-lowest dark:bg-black border-t border-zinc-900">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-6">
+<div class="font-inter text-xs tracking-wide uppercase text-zinc-500">
+                © 2024 The Midnight Exchange. Digital Artifacts Secured.
+            </div>
+<div class="flex gap-8 font-inter text-xs tracking-wide uppercase text-zinc-500">
+<a class="hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">API Docs</a>
+<a class="hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">Fee Structure</a>
+</div>
+</div>
+</footer>
+</body></html>

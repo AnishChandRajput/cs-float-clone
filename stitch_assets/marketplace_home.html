@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Midnight Exchange | Digital Artifacts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "tertiary": "#ff7162",
+                "surface-variant": "#22262b",
+                "surface-tint": "#85adff",
+                "primary-dim": "#0070eb",
+                "error-container": "#9f0519",
+                "secondary-fixed-dim": "#4af03b",
+                "tertiary-container": "#f9362c",
+                "on-background": "#f8f9fe",
+                "background": "#0b0e11",
+                "primary-fixed": "#6c9fff",
+                "on-secondary-container": "#e7ffda",
+                "primary-container": "#6c9fff",
+                "surface-container-high": "#1c2024",
+                "inverse-primary": "#005bc2",
+                "on-secondary": "#005e00",
+                "on-primary-container": "#00214f",
+                "surface-container-low": "#101417",
+                "on-error-container": "#ffa8a3",
+                "outline-variant": "#45484c",
+                "surface-bright": "#282d31",
+                "tertiary-fixed": "#ff9385",
+                "secondary": "#5bff49",
+                "error-dim": "#d7383b",
+                "tertiary-dim": "#e2241f",
+                "on-tertiary": "#4a0001",
+                "on-error": "#490006",
+                "surface-container-highest": "#22262b",
+                "on-secondary-fixed": "#004900",
+                "on-tertiary-fixed": "#3a0001",
+                "on-tertiary-container": "#000000",
+                "error": "#ff716c",
+                "on-primary": "#002c65",
+                "outline": "#737679",
+                "inverse-surface": "#f8f9fe",
+                "surface-dim": "#0b0e11",
+                "primary": "#85adff",
+                "on-primary-fixed": "#000000",
+                "tertiary-fixed-dim": "#ff7c6c",
+                "on-surface-variant": "#a9abaf",
+                "surface": "#0b0e11",
+                "surface-container": "#161a1e",
+                "inverse-on-surface": "#535559",
+                "secondary-container": "#006e01",
+                "on-surface": "#f8f9fe",
+                "on-secondary-fixed-variant": "#006901",
+                "primary-fixed-dim": "#5191ff",
+                "on-primary-fixed-variant": "#002a61",
+                "secondary-fixed": "#5bff49",
+                "secondary-dim": "#4af03b",
+                "on-tertiary-fixed-variant": "#7a0004",
+                "surface-container-lowest": "#000000"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+              },
+              "fontFamily": {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b0e11; color: #f8f9fe; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-nav { background: rgba(11, 14, 17, 0.8); backdrop-filter: blur(20px); }
+        .artifact-card:hover .artifact-glow { opacity: 1; }
+        .artifact-glow { transition: opacity 0.3s ease; opacity: 0; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0b0e11; }
+        ::-webkit-scrollbar-thumb { background: #22262b; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl dark:bg-zinc-950/80 shadow-[0_8px_32px_rgba(133,173,255,0.06)]">
+<nav class="flex items-center justify-between px-6 py-3 w-full max-w-[1920px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black italic tracking-tighter text-blue-400 dark:text-blue-400 font-headline">Midnight Exchange</span>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-6 font-manrope text-sm font-medium tracking-tight">
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1" href="#">Market</a>
+<a class="text-zinc-400 hover:text-zinc-100 transition-colors" href="#">Trade</a>
+<a class="text-zinc-400 hover:text-zinc-100 transition-colors" href="#">History</a>
+</div>
+</div>
+<!-- Search Bar (on_left in shell logic but centered/right for balanced UI) -->
+<div class="flex-1 max-w-xl mx-8 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 text-lg">search</span>
+<input class="w-full bg-surface-container-highest border-none rounded-xl py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-zinc-600 transition-all" placeholder="Search digital artifacts..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex flex-col items-end mr-2">
+<span class="text-xs text-zinc-500 font-label uppercase tracking-widest">Balance</span>
+<span class="text-secondary font-bold">$1,240.50</span>
+</div>
+<button class="bg-primary hover:bg-primary-fixed text-on-primary font-bold px-4 py-2 rounded-xl text-sm active:scale-95 duration-200 transition-all">
+                    Add Funds
+                </button>
+<div class="flex items-center gap-2 ml-2">
+<button class="p-2 text-zinc-400 hover:bg-white/5 rounded-xl transition-all duration-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-zinc-400 hover:bg-white/5 rounded-xl transition-all duration-300">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden ml-2">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="minimalistic 3d avatar of a cyberpunk character with neon highlights and reflective visor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFyD8Y0oEPKck2l8V2Nzih04T8i-BHyGqRZU-tQqbusFwHXxk-wKhxHu7BZ0LP32h9ThmnSfRCBTa8vsw7zHnQZJP_9qAhcOlTuMFumlgcBD_bhFppYaUxWwuduvcvGxXd03Dp3gzj9q_9_t9N1a3omotQFo71ZQtS_cjHRJtavMk0d_M8Ah6x_V2GqRP5Zym2ud7beylK4BV_W4EmoAYFy8fefki5Va5a38KU377HQGVp2YUMl73JCklUmEWDVSK7s7PW-QSfXzI"/>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="flex pt-20">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 pt-20 bg-surface-container-low dark:bg-zinc-900 border-r border-zinc-800/50 flex flex-col hidden lg:flex">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-6">
+<div class="p-2 bg-blue-400/10 rounded-lg">
+<span class="material-symbols-outlined text-blue-400">tune</span>
+</div>
+<div>
+<h3 class="text-zinc-100 font-bold font-manrope">Advanced Filters</h3>
+<p class="text-zinc-500 text-xs font-label">Refine Artifacts</p>
+</div>
+</div>
+<nav class="space-y-1 mb-8">
+<a class="bg-blue-400/10 text-blue-400 border-r-4 border-blue-400 px-4 py-3 flex items-center gap-3 font-manrope text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+                        All Items
+                    </a>
+<a class="text-zinc-500 hover:text-zinc-200 px-4 py-3 flex items-center gap-3 font-manrope text-sm transition-all hover:bg-zinc-800/50" href="#">
+<span class="material-symbols-outlined text-lg">architecture</span>
+                        Knives
+                    </a>
+<a class="text-zinc-500 hover:text-zinc-200 px-4 py-3 flex items-center gap-3 font-manrope text-sm transition-all hover:bg-zinc-800/50" href="#">
+<span class="material-symbols-outlined text-lg">front_hand</span>
+                        Gloves
+                    </a>
+<a class="text-zinc-500 hover:text-zinc-200 px-4 py-3 flex items-center gap-3 font-manrope text-sm transition-all hover:bg-zinc-800/50" href="#">
+<span class="material-symbols-outlined text-lg">precision_manufacturing</span>
+                        Rifles
+                    </a>
+<a class="text-zinc-500 hover:text-zinc-200 px-4 py-3 flex items-center gap-3 font-manrope text-sm transition-all hover:bg-zinc-800/50" href="#">
+<span class="material-symbols-outlined text-lg">label</span>
+                        Stickers
+                    </a>
+</nav>
+<div class="space-y-6">
+<div>
+<label class="text-[10px] uppercase tracking-widest text-zinc-500 font-bold block mb-3">Price Range</label>
+<div class="flex gap-2">
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-xs py-2 px-3 focus:ring-1 focus:ring-primary/40" placeholder="Min" type="text"/>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-xs py-2 px-3 focus:ring-1 focus:ring-primary/40" placeholder="Max" type="text"/>
+</div>
+</div>
+<div>
+<label class="text-[10px] uppercase tracking-widest text-zinc-500 font-bold block mb-3">Sort By</label>
+<select class="w-full bg-surface-container-highest border-none rounded-lg text-xs py-2 px-3 focus:ring-1 focus:ring-primary/40 text-zinc-300">
+<option>Popularity</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Newest Arrivals</option>
+</select>
+</div>
+</div>
+<button class="w-full mt-10 bg-primary text-on-primary py-3 rounded-xl font-bold text-sm hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/10">
+                    Apply Filters
+                </button>
+</div>
+<div class="mt-auto p-6 border-t border-zinc-800/50">
+<nav class="space-y-1">
+<a class="text-zinc-500 hover:text-zinc-200 px-4 py-2 flex items-center gap-3 font-manrope text-xs transition-all hover:bg-zinc-800/50" href="#">
+<span class="material-symbols-outlined text-sm">settings</span>
+                        Settings
+                    </a>
+<a class="text-zinc-500 hover:text-zinc-200 px-4 py-2 flex items-center gap-3 font-manrope text-xs transition-all hover:bg-zinc-800/50" href="#">
+<span class="material-symbols-outlined text-sm">help_center</span>
+                        Support
+                    </a>
+</nav>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-64 p-8 min-h-screen">
+<!-- Hero / Spotlight Section -->
+<section class="mb-12 relative rounded-3xl overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent z-10"></div>
+<img alt="Hero Artifact" class="w-full h-80 object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="abstract cosmic background with vibrant flowing nebulae in shades of deep indigo and electric blue with subtle grain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD56i0T1xWc35q4nFjR-bh4zkq71J-teOoXAgBci5mupub4eaNmsCvJnIpUMsUU3kIkc2hzg71gQNLWmTfO6g1tlw5Nej0B2tCSTQOB9dA-NVW_tRypH9ueE6xCCXYSMUODxHc3EEKm2T2b1OMjD1DbkpHNKub0uZN2KgqPDsQ6mLPaSKV_fhArqRcSdGWM1tI2wUSWTBjpWaKgkN1hpdnEbZ-NkhsHHdRTDn6pGRJk_hxKgGjbCechO6KGZXiBo-Li-PIUIpW84Qs"/>
+<div class="absolute inset-0 z-20 flex flex-col justify-center p-12 max-w-2xl">
+<span class="text-secondary font-bold text-sm tracking-widest uppercase mb-4 font-label">Weekly Spotlight</span>
+<h1 class="text-5xl font-black font-headline tracking-tighter mb-6 leading-none">NEON OVERDRIVE COLLECTION</h1>
+<p class="text-zinc-300 font-body text-lg mb-8 max-w-md">The most sought-after digital artifacts of the season have arrived. Secure your piece of the metaverse.</p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-bold hover:brightness-110 transition-all flex items-center gap-2">
+                            Explore Collection <span class="material-symbols-outlined">trending_flat</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Filters Bar (Mobile/Tablets) -->
+<div class="flex items-center justify-between mb-8">
+<div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+<button class="bg-secondary text-on-secondary px-5 py-2 rounded-full text-xs font-bold whitespace-nowrap">All Artifacts</button>
+<button class="bg-surface-container-high text-zinc-400 hover:text-zinc-100 px-5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors">Legendary</button>
+<button class="bg-surface-container-high text-zinc-400 hover:text-zinc-100 px-5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors">Limited Edition</button>
+<button class="bg-surface-container-high text-zinc-400 hover:text-zinc-100 px-5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors">Factory New</button>
+</div>
+<div class="hidden sm:flex items-center gap-2 text-zinc-500">
+<span class="text-xs font-label">2,419 items found</span>
+</div>
+</div>
+<!-- Bento Grid of Artifacts -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
+<!-- Artifact Card 1 -->
+<div class="artifact-card group bg-surface-container-low rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2 relative">
+<div class="absolute inset-0 artifact-glow bg-primary/5 blur-2xl pointer-events-none"></div>
+<div class="h-64 bg-surface-container overflow-hidden relative p-8">
+<div class="absolute top-4 right-4 z-20">
+<span class="bg-tertiary-container/20 text-tertiary text-[10px] font-black py-1 px-3 rounded-full backdrop-blur-md border border-tertiary/20">SCARCE</span>
+</div>
+<img alt="Starlight Blade" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_25px_rgba(133,173,255,0.3)]" data-alt="hyper-realistic 3d render of a glowing futuristic tactical knife with iridescent metal finish and neon edge highlights on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAppBoaw_XfZLXux-VqbRKGJKr-kj2fzCruEhxWpaTrSBHwju-8eSoilGy-5ZuLxcMj_PPOisOJg6wdpH2HWYm4Yn-W2NPN82plUS9OWV3o4aHaeMkzqw8klul4hwBXW3LqF8HchHD1yom0YyiG_sn4Fl5WFlsql7aw_iMWtAJubZTVKT67Hf0jcDh-9hE1eSEGFbMl3BM8bXr2Lv7b6vfZwRgN7gUNYE4axfA8OYe0tv_xsoum6WYcK6I0urvF4-8cwroYC0bNYX4"/>
+</div>
+<div class="p-6 bg-surface-container-highest flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-on-surface font-bold text-lg font-headline">Spectral Talon</h3>
+<p class="text-zinc-500 text-xs font-label uppercase tracking-widest">Knife | Doppler Ph. 4</p>
+</div>
+<button class="text-zinc-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<div class="mt-6 flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-xs text-zinc-500 mb-1">Current Price</span>
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold font-headline text-on-surface">$1,420.00</span>
+<span class="text-secondary text-[10px] font-bold flex items-center bg-secondary/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[12px]">arrow_drop_up</span> 4.2%
+                                    </span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-lg bg-surface-bright flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Artifact Card 2 -->
+<div class="artifact-card group bg-surface-container-low rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2 relative">
+<div class="absolute inset-0 artifact-glow bg-primary/5 blur-2xl pointer-events-none"></div>
+<div class="h-64 bg-surface-container overflow-hidden relative p-8">
+<img alt="Digital Mitts" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_25px_rgba(133,173,255,0.2)]" data-alt="professional esports gaming peripherals including a stylized glowing controller and gloves with neon circuitry patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeYULWRzFFN8SL5mruDp44ne8TVVnNem7AxK4EBvUznoDDr16t57LOXLKkyTGA2ssiZftbyzTRZlap8MwTh3IJTalirvt9l6XVUEron5mAd-nHfS72JOkgHyKwcxGnVXZqRuc6X3PDHgk0jnO0I5ZlKfqS0L0hjreboVplkd0mwmf8BgFhDz_cO31s1ywQr3kNnqnxh1w_CfxstCt0JYGQi8gcewBmuuZ0ZQL7yPnRmz4iatzuNODTuqnR5702R2S8mDAwWiKrl6s"/>
+</div>
+<div class="p-6 bg-surface-container-highest flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-on-surface font-bold text-lg font-headline">Marble Fade</h3>
+<p class="text-zinc-500 text-xs font-label uppercase tracking-widest">Gloves | Specialist</p>
+</div>
+<button class="text-zinc-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<div class="mt-6 flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-xs text-zinc-500 mb-1">Current Price</span>
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold font-headline text-on-surface">$845.50</span>
+<span class="text-tertiary text-[10px] font-bold flex items-center bg-tertiary/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[12px]">arrow_drop_down</span> 1.8%
+                                    </span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-lg bg-surface-bright flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Artifact Card 3 -->
+<div class="artifact-card group bg-surface-container-low rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2 relative">
+<div class="absolute inset-0 artifact-glow bg-primary/5 blur-2xl pointer-events-none"></div>
+<div class="h-64 bg-surface-container overflow-hidden relative p-8">
+<div class="absolute top-4 right-4 z-20">
+<span class="bg-secondary-fixed/20 text-secondary text-[10px] font-black py-1 px-3 rounded-full backdrop-blur-md border border-secondary/20">NEW</span>
+</div>
+<img alt="Precision Rifle" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_25px_rgba(133,173,255,0.2)]" data-alt="futuristic sci-fi assault rifle with white polymer shell and glowing blue plasma canisters on dark sleek background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVqNkwqu_FV7gmhadloNEmdP4ITBf2p6TfqXZr0DCA1zRRchzIgnXo4LT1WsmMUBc8MyrWBCpZm9ogUd8tg6AgKS952VhUdrln_6h0CRxmR75og5je4hnbcrQHerAMI4bSat4ZQlTnuwMwMBnMAjEDHU703jzpeSMHdFXrK88FfyRHbrGTxAd-RuLTtDta0ma3XMsM7h_7NvPaKvbRYCpRENPeOFNnz0qobLTbeKeC3tOL2yF4G6j5mkDijCCP86plfO0jAZ0WlPE"/>
+</div>
+<div class="p-6 bg-surface-container-highest flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-on-surface font-bold text-lg font-headline">Asiimov Core</h3>
+<p class="text-zinc-500 text-xs font-label uppercase tracking-widest">Rifle | AW-47</p>
+</div>
+<button class="text-zinc-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<div class="mt-6 flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-xs text-zinc-500 mb-1">Current Price</span>
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold font-headline text-on-surface">$2,100.25</span>
+<span class="text-secondary text-[10px] font-bold flex items-center bg-secondary/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[12px]">arrow_drop_up</span> 12.5%
+                                    </span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-lg bg-surface-bright flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Artifact Card 4 -->
+<div class="artifact-card group bg-surface-container-low rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2 relative">
+<div class="absolute inset-0 artifact-glow bg-primary/5 blur-2xl pointer-events-none"></div>
+<div class="h-64 bg-surface-container overflow-hidden relative p-8">
+<img alt="Sticker Pack" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="vibrant holographic sticker with stylized fox mask design reflecting rainbow colors on a glossy black surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdAL-5X92jo11K55ZsTqLttmCpAGpBRU3ihNmvNQ9R_613yRwB17_kfhhod7YBNuYQxObga5tDAysgfaJuyTJpCfjAoFlBDpis66H_4Dz62_y9TgLPBFQx-QWwytmbkFjVQW8pBGIr-Bm0ys3wvD1zFDRcl-leVfu24orBDbjszFOutKc4JYkPILGbthINvUy6_ayZDk3btjl3ZUTqYr8jELkczRxmGUZYCwCxrVWML_SNcM9yhQyjieWG8-JkEZ2yt-5FgTrZpcE"/>
+</div>
+<div class="p-6 bg-surface-container-highest flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-on-surface font-bold text-lg font-headline">Ronin Holo</h3>
+<p class="text-zinc-500 text-xs font-label uppercase tracking-widest">Sticker | Katowice 2024</p>
+</div>
+<button class="text-zinc-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<div class="mt-6 flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-xs text-zinc-500 mb-1">Current Price</span>
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold font-headline text-on-surface">$120.99</span>
+<span class="text-secondary text-[10px] font-bold flex items-center bg-secondary/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[12px]">arrow_drop_up</span> 0.5%
+                                    </span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-lg bg-surface-bright flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Artifact Card 5 -->
+<div class="artifact-card group bg-surface-container-low rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2 relative">
+<div class="absolute inset-0 artifact-glow bg-primary/5 blur-2xl pointer-events-none"></div>
+<div class="h-64 bg-surface-container overflow-hidden relative p-8">
+<img alt="Golden Knife" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_25px_rgba(255,215,0,0.15)]" data-alt="elegant gold plated curved karambit knife with intricate floral engravings reflecting soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2vNJLnhBkSM4nq3b1vTjjKpfZEIbCV-Icnbr6PIknWCKFF61-FXBNS9PGXgdcneTivFw95mDQxxdYupKyuCciHHllVx_Mhl2MLIVQ86f7eyD1QceD4vHyv2FvMGfB4zpNh1CzJ8HViQ6RkpGpeftNu7e47CIY3b28DLi_YJIuxtHEIHakcOmSkFuwOMs15zOmMZf206vSvrTBMl7xYxhTgBLJfccHGc8-cizTFiDwCK6qoY5DJlzDPo2X0yShf5lI17i-q-j2d8A"/>
+</div>
+<div class="p-6 bg-surface-container-highest flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-on-surface font-bold text-lg font-headline">Gilded Edge</h3>
+<p class="text-zinc-500 text-xs font-label uppercase tracking-widest">Knife | Lore</p>
+</div>
+<button class="text-zinc-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<div class="mt-6 flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-xs text-zinc-500 mb-1">Current Price</span>
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold font-headline text-on-surface">$3,450.00</span>
+<span class="text-tertiary text-[10px] font-bold flex items-center bg-tertiary/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[12px]">arrow_drop_down</span> 2.1%
+                                    </span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-lg bg-surface-bright flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Artifact Card 6 -->
+<div class="artifact-card group bg-surface-container-low rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2 relative">
+<div class="absolute inset-0 artifact-glow bg-primary/5 blur-2xl pointer-events-none"></div>
+<div class="h-64 bg-surface-container overflow-hidden relative p-8">
+<img alt="Carbon Skin" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="sleek matte black carbon fiber textured pistol with electric purple highlights and glowing indicator lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8ji1KuF_Szr_5P6Gz4Ew3Lsz3qmuWNBwY8u7t3opB1majWGT1VTGj21e3ghc6DwOmMvwH7ERhhf-DzZVV-rIIEySizM_I6UsWAcspwlHisG0LGE4G6xywlMPrufJX-Ap07vSRqSBXm4nINA1tyVSPzRpd6InF6rbFfiA3mL77UymmARRyX2vrs-FvysUhCjIlCgv_K9P8n3h0Rk9Anr0a1Tx2UB76lgYbWMiiQXVPIQLqtOa1QAuglhHqiF2crY44Fs0uVpdthiA"/>
+</div>
+<div class="p-6 bg-surface-container-highest flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-on-surface font-bold text-lg font-headline">Void Walker</h3>
+<p class="text-zinc-500 text-xs font-label uppercase tracking-widest">Pistol | Carbon Fiber</p>
+</div>
+<button class="text-zinc-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<div class="mt-6 flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-xs text-zinc-500 mb-1">Current Price</span>
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold font-headline text-on-surface">$245.00</span>
+<span class="text-secondary text-[10px] font-bold flex items-center bg-secondary/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[12px]">arrow_drop_up</span> 1.3%
+                                    </span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-lg bg-surface-bright flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<div class="fixed bottom-0 w-full z-50 glass-nav md:hidden border-t border-zinc-800/50">
+<div class="flex justify-around items-center py-4">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">Market</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-500">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="text-[10px] font-bold">Trade</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-500">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] font-bold">History</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-500">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto bg-surface-container-lowest dark:bg-black border-t border-zinc-900">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-6">
+<p class="font-inter text-xs tracking-wide uppercase text-zinc-500">© 2024 THE MIDNIGHT EXCHANGE. DIGITAL ARTIFACTS SECURED.</p>
+<div class="flex gap-8">
+<a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">API Docs</a>
+<a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">Fee Structure</a>
+</div>
+</div>
+</footer>
+<!-- FAB for quick action (Conditional check: Market page is primary top-level) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-all hover:brightness-110 z-[60] lg:hidden">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</body></html>

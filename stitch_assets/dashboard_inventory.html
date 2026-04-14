@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard | Midnight Exchange</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#ff7162",
+                      "surface-variant": "#22262b",
+                      "surface-tint": "#85adff",
+                      "primary-dim": "#0070eb",
+                      "error-container": "#9f0519",
+                      "secondary-fixed-dim": "#4af03b",
+                      "tertiary-container": "#f9362c",
+                      "on-background": "#f8f9fe",
+                      "background": "#0b0e11",
+                      "primary-fixed": "#6c9fff",
+                      "on-secondary-container": "#e7ffda",
+                      "primary-container": "#6c9fff",
+                      "surface-container-high": "#1c2024",
+                      "inverse-primary": "#005bc2",
+                      "on-secondary": "#005e00",
+                      "on-primary-container": "#00214f",
+                      "surface-container-low": "#101417",
+                      "on-error-container": "#ffa8a3",
+                      "outline-variant": "#45484c",
+                      "surface-bright": "#282d31",
+                      "tertiary-fixed": "#ff9385",
+                      "secondary": "#5bff49",
+                      "error-dim": "#d7383b",
+                      "tertiary-dim": "#e2241f",
+                      "on-tertiary": "#4a0001",
+                      "on-error": "#490006",
+                      "surface-container-highest": "#22262b",
+                      "on-secondary-fixed": "#004900",
+                      "on-tertiary-fixed": "#3a0001",
+                      "on-tertiary-container": "#000000",
+                      "error": "#ff716c",
+                      "on-primary": "#002c65",
+                      "outline": "#737679",
+                      "inverse-surface": "#f8f9fe",
+                      "surface-dim": "#0b0e11",
+                      "primary": "#85adff",
+                      "on-primary-fixed": "#000000",
+                      "tertiary-fixed-dim": "#ff7c6c",
+                      "on-surface-variant": "#a9abaf",
+                      "surface": "#0b0e11",
+                      "surface-container": "#161a1e",
+                      "inverse-on-surface": "#535559",
+                      "secondary-container": "#006e01",
+                      "on-surface": "#f8f9fe",
+                      "on-secondary-fixed-variant": "#006901",
+                      "primary-fixed-dim": "#5191ff",
+                      "on-primary-fixed-variant": "#002a61",
+                      "secondary-fixed": "#5bff49",
+                      "secondary-dim": "#4af03b",
+                      "on-tertiary-fixed-variant": "#7a0004",
+                      "surface-container-lowest": "#000000"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0b0e11;
+            color: #f8f9fe;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(11, 14, 17, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .no-line-rule {
+            border: none !important;
+        }
+        .ghost-border {
+            border: 1px solid rgba(69, 72, 76, 0.15);
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl dark:bg-zinc-950/80 shadow-[0_8px_32px_rgba(133,173,255,0.06)]">
+<div class="flex items-center justify-between px-6 py-3 w-full max-w-[1920px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black italic tracking-tighter text-blue-400 dark:text-blue-400">Midnight Exchange</span>
+<nav class="hidden md:flex items-center gap-6 font-manrope text-sm font-medium tracking-tight">
+<a class="text-zinc-400 hover:text-zinc-100 transition-colors" href="#">Market</a>
+<a class="text-zinc-400 hover:text-zinc-100 transition-colors" href="#">Trade</a>
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1" href="#">History</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-surface-container px-4 py-2 rounded-xl ghost-border">
+<span class="material-symbols-outlined text-zinc-500 text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface placeholder:text-zinc-600 w-48" placeholder="Search digital artifacts..." type="text"/>
+</div>
+<div class="flex flex-col items-end mr-4">
+<span class="text-xs text-zinc-500 font-bold uppercase tracking-widest">Portfolio</span>
+<span class="text-secondary font-headline font-bold">$1,240.50</span>
+</div>
+<button class="bg-primary text-on-primary px-5 py-2 rounded-xl font-headline font-bold text-sm hover:scale-105 active:scale-95 transition-all duration-200">
+                    Add Funds
+                </button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-zinc-400 hover:text-primary transition-colors cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-zinc-400 hover:text-primary transition-colors cursor-pointer">shopping_cart</span>
+<div class="w-8 h-8 rounded-full overflow-hidden ml-2 bg-surface-container-highest ghost-border">
+<img alt="User profile avatar" data-alt="professional headshot of a person with neutral expression in soft studio lighting against a dark gray background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj5fPc8nGOIcWw_hXt71qo1n6lEBFAkSG9VbLMgH5C6-N6Gl8KejElAc4sYNajkPF_6kP55WnnEZL85m77BAeYlKbMXGMmomWbS485OuIen1lO6vVLGaoXpHQeUdT4rEci7tGkpNGw_Zrw6rdJVIk0CNylj4lNGR3MBsMHuOlrgszQ2lo8anSdAKfYZfMQQw09I2NBx257WSICsI_xqV1A3N_x4wOv9FV99wpBROnUA1GqKprmYLS4TNSBScxQlXeWS-H4s01HCpY"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-12 px-6 max-w-[1920px] mx-auto flex flex-col gap-10">
+<!-- Hero Stats Bento -->
+<section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<!-- Balance Card -->
+<div class="md:col-span-2 bg-surface-container-low rounded-xl p-8 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+<div>
+<h2 class="font-headline text-zinc-500 text-sm font-bold uppercase tracking-[0.2em] mb-2">Available Balance</h2>
+<div class="flex items-baseline gap-3">
+<span class="text-5xl font-headline font-extrabold text-on-surface">$24,850.20</span>
+<span class="text-secondary font-headline font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +12.5%
+                        </span>
+</div>
+</div>
+<div class="flex gap-4 mt-8">
+<button class="flex-1 bg-surface-container-highest hover:bg-surface-bright transition-colors rounded-xl py-3 px-4 font-headline font-bold text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">remove</span>
+                        Withdraw
+                    </button>
+<button class="flex-1 bg-primary text-on-primary hover:bg-primary-fixed transition-colors rounded-xl py-3 px-4 font-headline font-bold text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                        Deposit
+                    </button>
+</div>
+</div>
+<!-- Portfolio Performance -->
+<div class="bg-surface-container-high rounded-xl p-8 flex flex-col justify-between border-l-4 border-primary">
+<div>
+<h2 class="font-headline text-zinc-500 text-sm font-bold uppercase tracking-[0.2em] mb-2">Portfolio Value</h2>
+<span class="text-3xl font-headline font-bold text-on-surface">$142,500.00</span>
+</div>
+<div class="mt-6 h-16 w-full">
+<!-- Placeholder for mini chart using simple shapes -->
+<div class="flex items-end gap-1 h-full">
+<div class="flex-1 bg-zinc-800 h-1/2 rounded-t-sm"></div>
+<div class="flex-1 bg-zinc-800 h-2/3 rounded-t-sm"></div>
+<div class="flex-1 bg-zinc-800 h-1/2 rounded-t-sm"></div>
+<div class="flex-1 bg-primary h-3/4 rounded-t-sm"></div>
+<div class="flex-1 bg-primary h-full rounded-t-sm"></div>
+<div class="flex-1 bg-primary h-5/6 rounded-t-sm"></div>
+<div class="flex-1 bg-secondary h-full rounded-t-sm"></div>
+</div>
+</div>
+</div>
+<!-- Items Count -->
+<div class="bg-surface-container-high rounded-xl p-8 flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-3">category</span>
+<span class="text-zinc-500 text-xs font-bold uppercase tracking-widest">Total Artifacts</span>
+<span class="text-4xl font-headline font-black text-on-surface mt-1">42</span>
+</div>
+</section>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-10">
+<!-- Side Controls (Inventory Filters) -->
+<aside class="xl:col-span-3">
+<div class="bg-surface-container-low rounded-xl p-6 sticky top-28">
+<h3 class="font-headline font-bold text-lg text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">filter_alt</span>
+                        Inventory Filters
+                    </h3>
+<div class="flex flex-col gap-2">
+<button class="bg-primary/10 text-blue-400 border-r-4 border-blue-400 px-4 py-3 flex items-center justify-between group transition-all">
+<span class="flex items-center gap-3">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-sm font-medium">All Items</span>
+</span>
+<span class="text-xs bg-surface-container-highest px-2 py-0.5 rounded text-zinc-400">42</span>
+</button>
+<button class="text-zinc-500 hover:text-zinc-200 px-4 py-3 flex items-center gap-3 hover:bg-zinc-800/50 transition-colors rounded-lg">
+<span class="material-symbols-outlined text-xl">architecture</span>
+<span class="text-sm font-medium">Knives</span>
+</button>
+<button class="text-zinc-500 hover:text-zinc-200 px-4 py-3 flex items-center gap-3 hover:bg-zinc-800/50 transition-colors rounded-lg">
+<span class="material-symbols-outlined text-xl">front_hand</span>
+<span class="text-sm font-medium">Gloves</span>
+</button>
+<button class="text-zinc-500 hover:text-zinc-200 px-4 py-3 flex items-center gap-3 hover:bg-zinc-800/50 transition-colors rounded-lg">
+<span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+<span class="text-sm font-medium">Rifles</span>
+</button>
+<button class="text-zinc-500 hover:text-zinc-200 px-4 py-3 flex items-center gap-3 hover:bg-zinc-800/50 transition-colors rounded-lg">
+<span class="material-symbols-outlined text-xl">label</span>
+<span class="text-sm font-medium">Stickers</span>
+</button>
+</div>
+<div class="mt-8 pt-8 border-t border-zinc-800/50">
+<button class="w-full bg-zinc-900 text-zinc-400 border border-zinc-800 rounded-xl py-3 font-headline font-bold text-sm hover:text-white transition-colors">
+                            Clear Filters
+                        </button>
+</div>
+</div>
+</aside>
+<!-- Main Inventory Grid -->
+<section class="xl:col-span-9 space-y-10">
+<div>
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline font-black text-3xl text-on-surface">Your Inventory</h2>
+<p class="text-zinc-500 mt-1">Manage and liquidate your digital assets.</p>
+</div>
+<div class="flex gap-4">
+<select class="bg-surface-container-high border-none text-zinc-400 text-sm rounded-xl px-4 py-2 focus:ring-1 focus:ring-primary">
+<option>Recently Acquired</option>
+<option>Price: High to Low</option>
+<option>Price: Low to High</option>
+<option>Rarity</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Artifact Card 1 -->
+<div class="bg-surface-container rounded-xl overflow-hidden group hover:shadow-[0_8px_32px_rgba(133,173,255,0.12)] transition-all duration-300">
+<div class="relative aspect-square bg-surface-container-low flex items-center justify-center p-8 overflow-hidden">
+<img alt="Ethereal Blade" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="a futuristic crystalline sword glowing with neon blue light, floating in a dark void with floating dust particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk7llhHgB93dKevhnO-6VGSzDdszi24lythCEu-kKV7BxcQbRwfmhEvWwgdu8pm-UDhRHVe-9YT5Sn3-1ayRWR3eA9ZLlQYEAHWyXwL44gfJMWoFYBrLXVRLCMkUFtxpXXfaTI1D8oBmjKewU4eYCs_v0OCE5MJTNVHb6ASpwABWdGm7z-OHCrrSPKOU2_CL1-NzrbhuJwcvTHpcKNs1DMrKt9sLyn4k7Fph6-rzH6P6lWIm-Kxeac4sgHHHSt0tIxRrbRWDGOM74"/>
+<div class="absolute top-3 right-3 bg-surface/80 backdrop-blur-md px-3 py-1 rounded-full border border-primary/20">
+<span class="text-[10px] font-bold text-primary uppercase tracking-tighter">Legendary</span>
+</div>
+</div>
+<div class="p-5 bg-surface-container-highest">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-headline font-bold text-on-surface">Ethereal Blade</h4>
+<span class="text-secondary font-bold text-sm font-headline">$4,250.00</span>
+</div>
+<p class="text-zinc-500 text-xs mb-4">Phase 4 • Factory New</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-bright hover:bg-zinc-700 transition-colors py-2 rounded-lg text-xs font-bold uppercase tracking-widest text-on-surface">Inspect</button>
+<button class="flex-1 bg-tertiary-container hover:bg-tertiary transition-colors py-2 rounded-lg text-xs font-bold uppercase tracking-widest text-on-tertiary-container">Sell</button>
+</div>
+</div>
+</div>
+<!-- Artifact Card 2 -->
+<div class="bg-surface-container rounded-xl overflow-hidden group hover:shadow-[0_8px_32px_rgba(133,173,255,0.12)] transition-all duration-300">
+<div class="relative aspect-square bg-surface-container-low flex items-center justify-center p-8 overflow-hidden">
+<img alt="Neon Runners" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="vibrant red athletic shoes with electric green glowing soles and neon accents, high-end product photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB2oK1Ajyp-6AO3jde9C-5N9M0izwvnD0fi3MeFyE6eIxRtcSXzxTGZyzktLDg-0w6P1seK_oZNfTvhX0KlfSk5vd3TMwTw4GGancBNQLQ7KQKB9rgrppEom4hn29_SURdqwcSzifDupIsQfSUelnKi0JUYc8z4SgQmwFhC1RDQmj8ksL7qRArmlgYHMSyMp0e3h0yhuWEiV51XXDjgJVvX5rAsnOnAhNhnTeN0uHOD54PDwvo32nkdD7ZFfJFUlLQms9aWX1Q7Dg"/>
+<div class="absolute top-3 right-3 bg-surface/80 backdrop-blur-md px-3 py-1 rounded-full border border-secondary/20">
+<span class="text-[10px] font-bold text-secondary uppercase tracking-tighter">Rare</span>
+</div>
+</div>
+<div class="p-5 bg-surface-container-highest">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-headline font-bold text-on-surface">Neon Runners</h4>
+<span class="text-secondary font-bold text-sm font-headline">$840.25</span>
+</div>
+<p class="text-zinc-500 text-xs mb-4">Limited Edition • Minimal Wear</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-bright hover:bg-zinc-700 transition-colors py-2 rounded-lg text-xs font-bold uppercase tracking-widest text-on-surface">Inspect</button>
+<button class="flex-1 bg-tertiary-container hover:bg-tertiary transition-colors py-2 rounded-lg text-xs font-bold uppercase tracking-widest text-on-tertiary-container">Sell</button>
+</div>
+</div>
+</div>
+<!-- Artifact Card 3 -->
+<div class="bg-surface-container rounded-xl overflow-hidden group hover:shadow-[0_8px_32px_rgba(133,173,255,0.12)] transition-all duration-300">
+<div class="relative aspect-square bg-surface-container-low flex items-center justify-center p-8 overflow-hidden">
+<img alt="Void Gauntlets" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="black tactical gloves with glowing purple circuit patterns and carbon fiber textures, floating against a smoky background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOcdxI7fx5x9q22Id8GTdFifDvCbiLp8JZFqAPSfCfLki8bDxme4mnI9B7LOY_U2LZJTq7SlMmLjXd4Kun7xqQu5GfSj6gnGGE6a9ElauZeBAO48gh711lHqObEAWLWjdRDKqpg6LaSi4cfXChAX2GnMbHjOvj2R67mmksrdVMKl9AWACj8uGMaTxCMXjzUGaYDAvcPQJJRybC5VvCBcGlHPx3or2V3kiUKM0m0C68EalOsKKkWKq_OYtBeel-G8bTl9OQOUEa5F0"/>
+<div class="absolute top-3 right-3 bg-surface/80 backdrop-blur-md px-3 py-1 rounded-full border border-tertiary/20">
+<span class="text-[10px] font-bold text-tertiary uppercase tracking-tighter">Mythic</span>
+</div>
+</div>
+<div class="p-5 bg-surface-container-highest">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-headline font-bold text-on-surface">Void Gauntlets</h4>
+<span class="text-secondary font-bold text-sm font-headline">$1,120.00</span>
+</div>
+<p class="text-zinc-500 text-xs mb-4">Midnight • Field-Tested</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-bright hover:bg-zinc-700 transition-colors py-2 rounded-lg text-xs font-bold uppercase tracking-widest text-on-surface">Inspect</button>
+<button class="flex-1 bg-tertiary-container hover:bg-tertiary transition-colors py-2 rounded-lg text-xs font-bold uppercase tracking-widest text-on-tertiary-container">Sell</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-center">
+<button class="text-zinc-400 font-headline font-bold text-sm flex items-center gap-2 hover:text-primary transition-colors">
+                            View All Items
+                            <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Recent Transactions Table -->
+<div class="pt-10">
+<h2 class="font-headline font-black text-3xl text-on-surface mb-8">Recent Transactions</h2>
+<div class="bg-surface-container-low rounded-xl overflow-hidden ghost-border">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-high/50 border-b border-zinc-800/50">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-zinc-500">Artifact</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-zinc-500">Type</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-zinc-500">Date</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-zinc-500">Status</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-zinc-500 text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-zinc-800/30">
+<tr class="hover:bg-zinc-800/10 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">architecture</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Cerulean Dagger</div>
+<div class="text-[10px] text-zinc-500">ID: #839210</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs text-zinc-400">Buy Order</span>
+</td>
+<td class="px-6 py-4 text-xs text-zinc-400">Oct 24, 2024</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-md bg-secondary/10 text-secondary text-[10px] font-bold uppercase">Completed</span>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-sm font-bold text-on-surface">-$1,200.00</span>
+</td>
+</tr>
+<tr class="hover:bg-zinc-800/10 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">label</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Titan Holo Sticker</div>
+<div class="text-[10px] text-zinc-500">ID: #110294</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs text-zinc-400">Sold</span>
+</td>
+<td class="px-6 py-4 text-xs text-zinc-400">Oct 22, 2024</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-md bg-secondary/10 text-secondary text-[10px] font-bold uppercase">Completed</span>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-sm font-bold text-secondary">+$8,400.00</span>
+</td>
+</tr>
+<tr class="hover:bg-zinc-800/10 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">precision_manufacturing</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Magma Rifle</div>
+<div class="text-[10px] text-zinc-500">ID: #229381</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs text-zinc-400">Buy Order</span>
+</td>
+<td class="px-6 py-4 text-xs text-zinc-400">Oct 20, 2024</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-md bg-zinc-800 text-zinc-500 text-[10px] font-bold uppercase">Pending</span>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-sm font-bold text-on-surface">-$250.50</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto border-t border-zinc-900 bg-surface-container-lowest dark:bg-black">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-6 max-w-[1920px] mx-auto">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-manrope text-xs tracking-wide uppercase text-zinc-500">© 2024 The Midnight Exchange. Digital Artifacts Secured.</span>
+</div>
+<div class="flex gap-8">
+<a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">API Docs</a>
+<a class="font-inter text-xs tracking-wide uppercase text-zinc-500 hover:text-blue-400 transition-colors opacity-80 hover:opacity-100" href="#">Fee Structure</a>
+</div>
+</div>
+</footer>
+</body></html>
