@@ -12,7 +12,17 @@ export interface AuthResult {
 }
 
 const SESSION_KEY = 'cs_float_session_user';
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5000';
+const API_BASE = import.meta.env.VITE_API_URL ?? '';
+
+function buildApiUrl(path: string): string {
+  const base = API_BASE.trim();
+  if (!base) return path;
+  return `${base.replace(/\/$/, '')}${path}`;
+}
+
+function getNetworkErrorMessage(): string {
+  return 'Unable to connect to the API server. Start the backend with "npm run server" and try again.';
+}
 
 function safeReadSessionUser(): StoredUser | null {
   try {
@@ -45,17 +55,37 @@ export function getCurrentUser(): StoredUser | null {
 }
 
 async function postJson<T>(path: string, body: Record<string, unknown>): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  });
+  let response: Response;
+  try {
+    response = await fetch(buildApiUrl(path), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+  } catch {
+    throw new Error(getNetworkErrorMessage());
+  }
 
-  const data = (await response.json()) as T & { message?: string };
+  const rawBody = await response.text();
+  let data: (T & { message?: string }) | null = null;
+  if (rawBody) {
+    try {
+      data = JSON.parse(rawBody) as T & { message?: string };
+    } catch {
+      if (!response.ok) {
+        throw new Error('API returned an invalid response. Check backend logs and try again.');
+      }
+    }
+  }
+
   if (!response.ok) {
-    throw new Error(data.message ?? 'Request failed');
+    throw new Error(data?.message ?? 'Request failed');
+  }
+
+  if (!data) {
+    throw new Error('API returned an empty response.');
   }
 
   return data;

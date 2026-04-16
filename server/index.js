@@ -9,14 +9,33 @@ dotenv.config();
 const app = express();
 const port = Number(process.env.PORT ?? 5000);
 const mongoUri = process.env.MONGODB_URI;
-const frontendOrigin = process.env.FRONTEND_ORIGIN ?? 'http://localhost:5173';
+const configuredOrigins = (process.env.FRONTEND_ORIGIN ?? 'http://localhost:5173')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+const allowedOrigins = new Set(configuredOrigins);
+
+function isLocalhostOrigin(origin) {
+  return /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+}
 
 if (!mongoUri) {
   console.error('MONGODB_URI is not set. Add it to your .env file.');
   process.exit(1);
 }
 
-app.use(cors({ origin: frontendOrigin }));
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.has(origin) || isLocalhostOrigin(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
+  })
+);
 app.use(express.json());
 
 app.get('/api/health', (_req, res) => {
